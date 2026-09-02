@@ -9,7 +9,17 @@
     { "word": "lompat", "combined": "Melompat" },
     { "word": "lintas", "combined": "Melintas" },
     { "word": "layan", "combined": "Melayan" },
-    { "word": "lamar", "combined": "Melamar" }
+    { "word": "lamar", "combined": "Melamar" },
+    { "word": "makan", "combined": "Memakan" },
+    { "word": "masak", "combined": "Memasak" },
+    { "word": "rasa", "combined": "Merasa" },
+    { "word": "rindu", "combined": "Merindu" },
+    { "word": "rampas", "combined": "Merampas" },
+    { "word": "warna", "combined": "Mewarna" },
+    { "word": "lawak", "combined": "Melawak" },
+    { "word": "ngiau", "combined": "Mengiau" },
+    { "word": "nyala", "combined": "Menyala" },
+    { "word": "ragut", "combined": "Meragut" }
   ],
   "Mem-": [
     { "word": "bawa", "combined": "Membawa" },
@@ -23,7 +33,15 @@
     { "word": "potong", "combined": "Memotong" },
     { "word": "pancing", "combined": "Memancing" },
     { "word": "panggil", "combined": "Memanggil" },
-    { "word": "buka", "combined": "Membuka" }
+    { "word": "buka", "combined": "Membuka" },
+    { "word": "pimpin", "combined": "Memimpin" },
+    { "word": "pakai", "combined": "Memakai" },
+    { "word": "pegang", "combined": "Memegang" },
+    { "word": "pandang", "combined": "Memandang" },
+    { "word": "pasang", "combined": "Memasang" },
+    { "word": "panjat", "combined": "Memanjat" },
+    { "word": "pinjam", "combined": "Meminjam" },
+    { "word": "baling", "combined": "Membaling" }
   ],
   "Men-": [
     { "word": "cuci", "combined": "Mencuci" },
@@ -38,7 +56,14 @@
     { "word": "jawab", "combined": "Menjawab" },
     { "word": "jaga", "combined": "Menjaga" },
     { "word": "jahit", "combined": "Menjahit" },
-    { "word": "daki", "combined": "Mendaki" }
+    { "word": "daki", "combined": "Mendaki" },
+    { "word": "tolong", "combined": "Menolong" },
+    { "word": "tendang", "combined": "Menendang" },
+    { "word": "tangkap", "combined": "Menangkap" },
+    { "word": "tiup", "combined": "Meniup" },
+    { "word": "tikam", "combined": "Menikam" },
+    { "word": "teka", "combined": "Meneka" },
+    { "word": "tampal", "combined": "Menampal" }
   ],
   "Meng-": [
     { "word": "gosok", "combined": "Menggosok" },
@@ -54,7 +79,13 @@
     { "word": "kira", "combined": "Mengira" },
     { "word": "gigit", "combined": "Menggigit" },
     { "word": "ganggu", "combined": "Mengganggu" },
-    { "word": "hidu", "combined": "Menghidu" }
+    { "word": "hidu", "combined": "Menghidu" },
+    { "word": "guna", "combined": "Mengguna" },
+    { "word": "karang", "combined": "Mengarang" },
+    { "word": "koyak", "combined": "Mengoyak" },
+    { "word": "ketuk", "combined": "Mengetuk" },
+    { "word": "kisar", "combined": "Mengisar" },
+    { "word": "kayuh", "combined": "Mengayuh" }
   ],
   "Meny-": [
     { "word": "sapu", "combined": "Menyapu" },
@@ -67,6 +98,37 @@
     { "word": "sepak", "combined": "Menyepak" },
     { "word": "sahut", "combined": "Menyahut" },
     { "word": "salin", "combined": "Menyalin" },
-    { "word": "sangka", "combined": "Menyangka" }
+    { "word": "sangka", "combined": "Menyangka" },
+    { "word": "seluk", "combined": "Menyeluk" },
+    { "word": "sindir", "combined": "Menyindir" },
+    { "word": "sambut", "combined": "Menyambut" },
+    { "word": "sembunyi", "combined": "Menyembunyi" },
+    { "word": "salak", "combined": "Menyalak" },
+    { "word": "siasat", "combined": "Menyiasat" },
+    { "word": "suruh", "combined": "Menyuruh" },
+    { "word": "selak", "combined": "Menyelak" },
+    { "word": "suap", "combined": "Menyuap" }
+  ],
+  "Menge-": [
+    { "word": "pos", "combined": "Mengepos" },
+    { "word": "cat", "combined": "Mengecat" },
+    { "word": "bom", "combined": "Mengebom" },
+    { "word": "pam", "combined": "Mengepam" },
+    { "word": "lap", "combined": "Mengelap" },
+    { "word": "zip", "combined": "Mengezip" },
+    { "word": "cas", "combined": "Mengecas" },
+    { "word": "cop", "combined": "Mengecop" },
+    { "word": "kod", "combined": "Mengekod" },
+    { "word": "gam", "combined": "Mengegam" },
+    { "word": "cam", "combined": "Mengecam" },
+    { "word": "cap", "combined": "Mengecap" },
+    { "word": "tut", "combined": "Mengetut" },
+    { "word": "pin", "combined": "Mengepin" },
+    { "word": "mop", "combined": "Mengemop" },
+    { "word": "tin", "combined": "Mengetin" },
+    { "word": "wap", "combined": "Mengewap" },
+    { "word": "had", "combined": "Mengehad" },
+    { "word": "sah", "combined": "Mengesah" },
+    { "word": "syor", "combined": "Mengesyor" }
   ]
 }
