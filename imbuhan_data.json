@@ -1,0 +1,72 @@
+{
+  "Me-": [
+    { "word": "lukis", "combined": "Melukis" },
+    { "word": "rawat", "combined": "Merawat" },
+    { "word": "lawat", "combined": "Melawat" },
+    { "word": "nyanyi", "combined": "Menyanyi" },
+    { "word": "latih", "combined": "Melatih" },
+    { "word": "lipat", "combined": "Melipat" },
+    { "word": "lompat", "combined": "Melompat" },
+    { "word": "lintas", "combined": "Melintas" },
+    { "word": "layan", "combined": "Melayan" },
+    { "word": "lamar", "combined": "Melamar" }
+  ],
+  "Mem-": [
+    { "word": "bawa", "combined": "Membawa" },
+    { "word": "baca", "combined": "Membaca" },
+    { "word": "pukul", "combined": "Memukul" },
+    { "word": "beli", "combined": "Membeli" },
+    { "word": "basuh", "combined": "Membasuh" },
+    { "word": "bantu", "combined": "Membantu" },
+    { "word": "bayar", "combined": "Membayar" },
+    { "word": "pilih", "combined": "Memilih" },
+    { "word": "potong", "combined": "Memotong" },
+    { "word": "pancing", "combined": "Memancing" },
+    { "word": "panggil", "combined": "Memanggil" },
+    { "word": "buka", "combined": "Membuka" }
+  ],
+  "Men-": [
+    { "word": "cuci", "combined": "Mencuci" },
+    { "word": "tulis", "combined": "Menulis" },
+    { "word": "jual", "combined": "Menjual" },
+    { "word": "cari", "combined": "Mencari" },
+    { "word": "dengar", "combined": "Mendengar" },
+    { "word": "tari", "combined": "Menari" },
+    { "word": "tolak", "combined": "Menolak" },
+    { "word": "tarik", "combined": "Menarik" },
+    { "word": "curi", "combined": "Mencuri" },
+    { "word": "jawab", "combined": "Menjawab" },
+    { "word": "jaga", "combined": "Menjaga" },
+    { "word": "jahit", "combined": "Menjahit" },
+    { "word": "daki", "combined": "Mendaki" }
+  ],
+  "Meng-": [
+    { "word": "gosok", "combined": "Menggosok" },
+    { "word": "goreng", "combined": "Menggoreng" },
+    { "word": "hantar", "combined": "Menghantar" },
+    { "word": "kawal", "combined": "Mengawal" },
+    { "word": "ambil", "combined": "Mengambil" },
+    { "word": "ajar", "combined": "Mengajar" },
+    { "word": "ikat", "combined": "Mengikat" },
+    { "word": "ukur", "combined": "Mengukur" },
+    { "word": "korek", "combined": "Mengorek" },
+    { "word": "kumpul", "combined": "Mengumpul" },
+    { "word": "kira", "combined": "Mengira" },
+    { "word": "gigit", "combined": "Menggigit" },
+    { "word": "ganggu", "combined": "Mengganggu" },
+    { "word": "hidu", "combined": "Menghidu" }
+  ],
+  "Meny-": [
+    { "word": "sapu", "combined": "Menyapu" },
+    { "word": "sikat", "combined": "Menyikat" },
+    { "word": "susun", "combined": "Menyusun" },
+    { "word": "selam", "combined": "Menyelam" },
+    { "word": "sebut", "combined": "Menyebut" },
+    { "word": "simpan", "combined": "Menyimpan" },
+    { "word": "siram", "combined": "Menyiram" },
+    { "word": "sepak", "combined": "Menyepak" },
+    { "word": "sahut", "combined": "Menyahut" },
+    { "word": "salin", "combined": "Menyalin" },
+    { "word": "sangka", "combined": "Menyangka" }
+  ]
+}
