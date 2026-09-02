@@ -369,7 +369,7 @@
                     text: wrongData.word,
                     isCorrect: false,
                     reason: `Salah! '${wrongData.word}' lebih sesuai menggunakan '${wrongPrefix.replace('-', '')}' (${wrongData.combined})`,
-                    data: null
+                    data: wrongData
                 });
             }
 
@@ -387,7 +387,7 @@
             choices.forEach(choice => {
                 const btn = document.createElement('button');
                 btn.className = 'root-word';
-                btn.textContent = choice.text;
+                btn.innerHTML = `${choice.text}<br><span style="font-size: 0.65em; color: #555; font-weight: normal;">${choice.data.zh}</span>`;
                 btn.onclick = () => checkAnswer(choice, btn);
                 container.appendChild(btn);
             });
