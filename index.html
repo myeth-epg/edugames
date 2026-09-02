@@ -331,9 +331,10 @@
             
             // 1. Pick a random Prefix
             currentPrefix = getRandomItem(availablePrefixes);
+            let displayPrefix = currentPrefix.replace('-', '');
             
             const prefixEl = document.getElementById('prefix');
-            prefixEl.textContent = currentPrefix;
+            prefixEl.textContent = displayPrefix;
             
             // Reset styles for animation
             prefixEl.style.display = 'block';
@@ -346,7 +347,7 @@
             document.getElementById('next-btn').style.display = 'none';
             
             const instructionMsg = document.getElementById('instruction-text');
-            instructionMsg.innerHTML = `Pilih perkataan yang betul untuk imbuhan "<strong>${currentPrefix}</strong>"`;
+            instructionMsg.innerHTML = `Pilih perkataan yang betul untuk imbuhan "<strong>${displayPrefix}</strong>"`;
             instructionMsg.style.display = 'block';
 
             const feedbackMsg = document.getElementById('feedback-msg');
@@ -367,7 +368,7 @@
                 wrongChoices.push({
                     text: wrongData.word,
                     isCorrect: false,
-                    reason: `Salah! '${wrongData.word}' lebih sesuai menggunakan '${wrongPrefix}' (${wrongData.combined})`,
+                    reason: `Salah! '${wrongData.word}' lebih sesuai menggunakan '${wrongPrefix.replace('-', '')}' (${wrongData.combined})`,
                     data: null
                 });
             }
@@ -430,7 +431,22 @@
                     resultWord.textContent = `✨ ${choice.data.combined} ✨`;
                     resultWord.style.display = 'block';
                     
-                    feedbackMsg.textContent = `${currentPrefix} + ${choice.text} = ${choice.data.combined.toLowerCase()}`;
+                    // Educational Feature: Strike-through dropped letters
+                    let rootWordDisplay = choice.text;
+                    let firstChar = choice.text.charAt(0).toLowerCase();
+                    let dropsLetter = false;
+                    
+                    if (currentPrefix === "Mem-" && firstChar === "p") dropsLetter = true;
+                    if (currentPrefix === "Men-" && firstChar === "t") dropsLetter = true;
+                    if (currentPrefix === "Meng-" && firstChar === "k") dropsLetter = true;
+                    if (currentPrefix === "Meny-" && firstChar === "s") dropsLetter = true;
+
+                    if (dropsLetter) {
+                        rootWordDisplay = `<del style="color: #F44336; text-decoration-thickness: 3px;">${choice.text.charAt(0)}</del>${choice.text.slice(1)}`;
+                    }
+                    
+                    let displayPrefix = currentPrefix.replace('-', '');
+                    feedbackMsg.innerHTML = `${displayPrefix} + ${rootWordDisplay} = <span style="color: #1565C0;">${choice.data.combined.toLowerCase()}</span>`;
                     
                     nextBtn.style.display = 'block';
                 }, 700);
