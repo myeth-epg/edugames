@@ -196,17 +196,26 @@
         .end-screen {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 50;
+            text-align: center;
         }
         .end-screen h1 {
             font-size: 4em;
             color: #FF9800;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+        .score-board {
+            background: white;
+            border: 4px solid #4CAF50;
+            border-radius: 15px;
+            padding: 20px 40px;
+            margin: 20px 0 30px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         @media (max-width: 768px) {
             .game-area {
@@ -293,7 +302,11 @@
     </audio>
 
     <div class="game-area" id="game-area">
-        <div class="level-indicator" id="level-indicator">Tahap 1 / 7</div>
+        <div class="level-indicator" id="level-indicator">
+            Tahap 1 / 120<br>
+            <span style="font-size: 0.8em; color: #2E7D32;">✅ <span id="score-b">0</span></span> | 
+            <span style="font-size: 0.8em; color: #c62828;">❌ <span id="score-s">0</span></span>
+        </div>
         <button class="music-btn" id="music-btn" onclick="toggleMusic()">🔇 Muzik</button>
         
         <div class="instruction-text" id="instruction-text"></div>
@@ -312,8 +325,12 @@
         
         <div class="end-screen" id="end-screen">
             <h1>Tahniah! 🎉</h1>
-            <p style="font-size: 1.5em; color: #333; margin-bottom: 30px;">Anda telah menguasai semua imbuhan!</p>
-            <button class="action-btn" style="display: block; position: static;" onclick="location.reload()">Main Semula 🔄</button>
+            <p style="font-size: 1.2em; color: #333; margin-bottom: 5px;">Anda telah menyelesaikan semua imbuhan!</p>
+            <div class="score-board">
+                <p style="font-size: 1.5em; color: #2E7D32; font-weight: bold; margin: 5px 0;">✅ Betul: <span id="final-betul">0</span></p>
+                <p style="font-size: 1.5em; color: #c62828; font-weight: bold; margin: 5px 0;">❌ Salah: <span id="final-salah">0</span></p>
+            </div>
+            <button class="action-btn" style="display: block; position: static; transform: none; margin: 0 auto;" onclick="location.reload()">Main Semula 🔄</button>
         </div>
     </div>
 
@@ -325,6 +342,10 @@
         let currentRound = 1;
         let gameActive = true;
         let currentPrefix = "";
+        
+        let scoreBetul = 0;
+        let scoreSalah = 0;
+        let hasMadeMistakeThisRound = false;
         
         let isMusicPlaying = false;
         function toggleMusic() {
@@ -383,11 +404,14 @@
         function loadLevel() {
             // Check if we ran out of unique questions
             if (allQuestions.length === 0) {
+                document.getElementById('final-betul').textContent = scoreBetul;
+                document.getElementById('final-salah').textContent = scoreSalah;
                 document.getElementById('end-screen').style.display = 'flex';
                 return;
             }
             
             gameActive = true;
+            hasMadeMistakeThisRound = false;
             
             // Pop the top card off our shuffled deck (guaranteed unique)
             const currentQ = allQuestions.pop();
@@ -395,7 +419,11 @@
             const correctData = currentQ.wordData;
             
             // Update UI
-            document.getElementById('level-indicator').textContent = `Tahap ${currentRound} / ${totalQuestions}`;
+            document.getElementById('level-indicator').innerHTML = `
+                Tahap ${currentRound} / ${totalQuestions}<br>
+                <span style="font-size: 0.8em; color: #2E7D32;">✅ <span id="score-b">${scoreBetul}</span></span> | 
+                <span style="font-size: 0.8em; color: #c62828;">❌ <span id="score-s">${scoreSalah}</span></span>
+            `;
             
             let displayPrefix = currentPrefix.replace('-', '');
             
@@ -467,6 +495,11 @@
 
             if (choice.isCorrect) {
                 // Correct logic
+                if (!hasMadeMistakeThisRound) {
+                    scoreBetul++;
+                    document.getElementById('score-b').textContent = scoreBetul;
+                }
+                
                 btn.classList.add('correct');
                 
                 // Stop floating animation
@@ -482,35 +515,28 @@
                     if (b !== btn) b.classList.add('grayed-out');
                 });
 
-                feedbackMsg.textContent = "Tahniah! Tepat sekali!";
-                feedbackMsg.style.color = "#2E7D32";
+                document.getElementById('instruction-text').style.display = 'none';
 
-                // Merge into combined word
+                // Build strike-through display
+                let firstChar = choice.text.charAt(0).toLowerCase();
+                let dropsLetter = false;
+                if (currentPrefix === "Mem-" && firstChar === "p") dropsLetter = true;
+                if (currentPrefix === "Men-" && firstChar === "t") dropsLetter = true;
+                if (currentPrefix === "Meng-" && firstChar === "k") dropsLetter = true;
+                if (currentPrefix === "Meny-" && firstChar === "s") dropsLetter = true;
+
+                let equationHTML = "";
+                if (dropsLetter) {
+                    let rest = choice.text.substring(1);
+                    equationHTML = `${currentPrefix.replace('-', '')} + <del style="color:red;">${firstChar}</del>${rest} = <span style="font-size: 1.3em;">${choice.data.combined}</span>`;
+                } else {
+                    equationHTML = `${currentPrefix.replace('-', '')} + ${choice.text} = <span style="font-size: 1.3em;">${choice.data.combined}</span>`;
+                }
+
                 setTimeout(() => {
                     prefixEl.style.display = 'none';
-                    btn.style.display = 'none';
-                    document.getElementById('instruction-text').style.display = 'none';
-                    
-                    resultWord.textContent = `✨ ${choice.data.combined} ✨`;
+                    resultWord.innerHTML = equationHTML;
                     resultWord.style.display = 'block';
-                    
-                    // Educational Feature: Strike-through dropped letters
-                    let rootWordDisplay = choice.text;
-                    let firstChar = choice.text.charAt(0).toLowerCase();
-                    let dropsLetter = false;
-                    
-                    if (currentPrefix === "Mem-" && firstChar === "p") dropsLetter = true;
-                    if (currentPrefix === "Men-" && firstChar === "t") dropsLetter = true;
-                    if (currentPrefix === "Meng-" && firstChar === "k") dropsLetter = true;
-                    if (currentPrefix === "Meny-" && firstChar === "s") dropsLetter = true;
-
-                    if (dropsLetter) {
-                        rootWordDisplay = `<del style="color: #F44336; text-decoration-thickness: 3px;">${choice.text.charAt(0)}</del>${choice.text.slice(1)}`;
-                    }
-                    
-                    let displayPrefix = currentPrefix.replace('-', '');
-                    feedbackMsg.innerHTML = `<span style="font-size: 1.3em;">${displayPrefix} + ${rootWordDisplay} = <span style="color: #1565C0;">${choice.data.combined.toLowerCase()}</span></span>`;
-                    
                     nextBtn.style.display = 'block';
                 }, 700);
 
@@ -519,8 +545,15 @@
             } else {
                 // Incorrect logic
                 btn.classList.add('incorrect');
-                feedbackMsg.innerHTML = choice.reason + "<br><strong>Cuba lagi! 💪</strong>";
+                btn.style.pointerEvents = 'none'; // Disable just this button
+                feedbackMsg.innerHTML = choice.reason;
                 feedbackMsg.style.color = "#D32F2F";
+                
+                if (!hasMadeMistakeThisRound) {
+                    hasMadeMistakeThisRound = true;
+                }
+                scoreSalah++;
+                document.getElementById('score-s').textContent = scoreSalah;
             }
         }
         
