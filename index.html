@@ -140,7 +140,7 @@
         /* Bottom instruction/feedback text */
         .feedback-message {
             position: absolute;
-            bottom: 80px;
+            bottom: 100px; /* Moved up to avoid Netlify badge */
             width: 100%;
             text-align: center;
             font-size: 1.8em;
@@ -150,6 +150,7 @@
             transition: color 0.3s;
             padding: 0 20px;
             box-sizing: border-box;
+            z-index: 20;
         }
 
         /* Big victory text */
@@ -170,7 +171,7 @@
         
         .action-btn {
             position: absolute;
-            bottom: 20px;
+            bottom: 40px; /* Moved up to avoid Netlify badge */
             left: 50%;
             transform: translateX(-50%);
             padding: 12px 25px;
@@ -248,7 +249,7 @@
             
             .feedback-message {
                 font-size: 1em;
-                bottom: 65px;
+                bottom: 100px; /* Kept aligned with mobile action-btn */
                 padding: 0 5px;
                 line-height: 1.2;
             }
@@ -263,7 +264,7 @@
                 width: 90%;
                 font-size: 1.1em;
                 padding: 12px;
-                bottom: 10px;
+                bottom: 40px; /* Moved up to clear badge */
             }
         }
 
