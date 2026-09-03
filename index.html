@@ -320,6 +320,8 @@
     <script>
         let levelsData = {};
         let availablePrefixes = [];
+        let allQuestions = []; // Acts as a unique deck of cards
+        let totalQuestions = 0;
         let currentRound = 1;
         let gameActive = true;
         let currentPrefix = "";
@@ -345,6 +347,17 @@
                 if (!response.ok) throw new Error('Network response was not ok');
                 levelsData = await response.json();
                 availablePrefixes = Object.keys(levelsData);
+                
+                // Build a deck of all possible questions to avoid duplicates
+                availablePrefixes.forEach(prefix => {
+                    levelsData[prefix].forEach(wordData => {
+                        allQuestions.push({ prefix: prefix, wordData: wordData });
+                    });
+                });
+                // Shuffle the entire deck once
+                shuffleArray(allQuestions);
+                totalQuestions = allQuestions.length;
+                
                 loadLevel();
             } catch (error) {
                 console.error('Error loading JSON:', error);
@@ -368,14 +381,22 @@
         }
 
         function loadLevel() {
-            if (availablePrefixes.length === 0) return;
+            // Check if we ran out of unique questions
+            if (allQuestions.length === 0) {
+                document.getElementById('end-screen').style.display = 'flex';
+                return;
+            }
+            
             gameActive = true;
             
-            // Update UI
-            document.getElementById('level-indicator').textContent = `Pusingan ${currentRound}`;
+            // Pop the top card off our shuffled deck (guaranteed unique)
+            const currentQ = allQuestions.pop();
+            currentPrefix = currentQ.prefix;
+            const correctData = currentQ.wordData;
             
-            // 1. Pick a random Prefix
-            currentPrefix = getRandomItem(availablePrefixes);
+            // Update UI
+            document.getElementById('level-indicator').textContent = `Tahap ${currentRound} / ${totalQuestions}`;
+            
             let displayPrefix = currentPrefix.replace('-', '');
             
             const prefixEl = document.getElementById('prefix');
@@ -398,9 +419,6 @@
             const feedbackMsg = document.getElementById('feedback-msg');
             feedbackMsg.textContent = "";
             
-            // 2. Pick the correct word from the selected prefix
-            const correctData = getRandomItem(levelsData[currentPrefix]);
-
             // 3. Pick 2 wrong words from DIFFERENT prefixes
             let otherPrefixes = availablePrefixes.filter(p => p !== currentPrefix);
             otherPrefixes = shuffleArray(otherPrefixes);
